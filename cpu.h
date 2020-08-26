@@ -1,9 +1,8 @@
-// a        accumulator
-// x, y     indexes
-// pc       program coutner
-// s        stack pointer
-// p        status register
-
-int a, x, y, pc, s, p;
+int a;          // accumulator
+int x;          // index x
+int y;          // index y
+int pc;         // program counter
+int s;          // stack pointer
+int p;          // status flags
 int status;
-int* memory;
+int* memory;    // NES RAM
