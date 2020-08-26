@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
 #include "cpu.h"
+#include "runtime.h"
 
 extern int a, x, y, pc, s, p;
 extern int status;
 extern int* memory;
 
 int main() {
+    SDL_bool running = SDL_TRUE;
 
+    // initialize registers
     a = 0;
     x = 0;
     y = 0;
@@ -18,6 +21,15 @@ int main() {
     // initialize memory
     memory = (int*)malloc(0xFFFF);
 
+    // load rom into memory
+    load_rom();
+
+    // processor loop
+    while (running) {
+        process_instruction();
+
+        // TODO: add everything else
+    }
 
     // free memory
     free(memory);
