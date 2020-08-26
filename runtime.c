@@ -7,7 +7,7 @@ extern int status;
 extern int* memory;
 
 // load ROM into memory
-void loadrom() {
+void load_rom() {
     FILE* rom;
     int i = 0x4020;
     pc = 0x4020;
@@ -23,9 +23,10 @@ void loadrom() {
     fclose(rom);
 }
 
+// process each operation
 void process_instruction() {
     switch(memory[pc]) {
-        case 0x0:           // break
+        case 0x0:
             brk();
             break;
 
@@ -651,5 +652,5 @@ void process_instruction() {
             break;
 
         default:
-            break;
+            break;      // TODO: maybe some error checking in case I missed something
 }
