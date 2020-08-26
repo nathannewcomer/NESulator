@@ -1,3 +1,5 @@
+int immediate();
+
 // returns zero page address
 int zero_page();
 

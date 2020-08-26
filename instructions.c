@@ -31,13 +31,13 @@ void and(int value) {
 }
 
 // -- arithmetic shift left ---
-void asl(int* reg) {
-    *reg << 1;
+void asl(int address) {
+    memory[address] << 1;
 
     // set flags
-    set_carry(*reg);
-    set_zero(*reg);
-    set_negative(*reg);
+    set_carry(memory[address]);
+    set_zero(memory[address]);
+    set_negative(memory[address]);
 }
 
 // --- branch if carry clear ---
@@ -303,6 +303,7 @@ void pla() {
 
 // --- pull processor status ---
 void plp() {
+    p++;
     p = stack_pop();
 }
 

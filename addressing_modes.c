@@ -2,7 +2,7 @@ extern int a, x, y, pc, s, p;
 extern int status;
 extern int* memory;
 
-// returns immediate/actual value
+// returns constant value
 int immediate() {
     pc++;
     int output = memory[pc];
@@ -36,9 +36,12 @@ int zero_page_y() {
 
 int relative() {
     pc++;
-    pc += memory[pc];
+    int output = memory[pc];
+    pc++;
+    return output;
 }
 
+// returns the address given by 2 byte operand
 int absolute() {
     pc++;
     int output = memory[pc] * 0xFF;
@@ -49,21 +52,23 @@ int absolute() {
     return output;
 }
 
+// returns the address given by 2 byte operand added to x
 int absolute_x() {
     return absolute() + x;
 }
 
+// returns the address given by 2 byte operand added to y
 int absolute_y() {
     return absolute() + y;
 }
 
 // only used by jump
 int indirect() {
-    pc++;
     int address = absolute();
     return memory[address];
 }
 
+// returns address 
 // only used with x register
 int indexed_indirect() {
     pc++;
@@ -73,9 +78,10 @@ int indexed_indirect() {
     int output = memory[address];
     output += memory[address + 1] * 0xFF;
 
-    return memory[output];
+    return output;
 }
 
+// returns address
 // only used with y register
 int indirect_indexed() {
     pc++;
@@ -85,5 +91,5 @@ int indirect_indexed() {
     output += memory[address + 1] * 0xFF;
 
     output += y;
-    return memory[output];
+    return output;
 }

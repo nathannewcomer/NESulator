@@ -4,7 +4,7 @@ void adc(int value);
 
 void and(int value);
 
-void asl(int* reg);
+void asl(int address);
 
 // --- branch if carry clear ---
 void bcc(int value);
